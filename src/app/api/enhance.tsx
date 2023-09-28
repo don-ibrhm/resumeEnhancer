@@ -2,7 +2,7 @@ import { ResumeWorkExperience, ResumeProject } from "../lib/redux/types";
 
 export const enhanceObjective = async () : Promise<string> => {
     try {
-        const response = await fetch('http://localhost:8000/enhance-objective/',
+        const response = await fetch('https://resenhapi.onrender.com/enhance-objective/',
         {
             method: "GET",
             headers: {
@@ -22,7 +22,7 @@ export const enhanceObjective = async () : Promise<string> => {
 
 export const enhanceWorkExperience = async () : Promise<ResumeWorkExperience[]> => {
     try {
-        const response = await fetch('http://localhost:8000/enhance-experience/',
+        const response = await fetch('https://resenhapi.onrender.com/enhance-experience/',
         {
             method: "GET",
             headers: {
@@ -47,7 +47,7 @@ export const enhanceWorkExperience = async () : Promise<ResumeWorkExperience[]> 
 
 export const enhanceProjects = async () : Promise<ResumeProject[]> => {
     try {
-        const response = await fetch('http://localhost:8000/enhance-projects/',
+        const response = await fetch('https://resenhapi.onrender.com/enhance-projects/',
         {
             method: "GET",
             headers: {
@@ -71,7 +71,7 @@ export const enhanceProjects = async () : Promise<ResumeProject[]> => {
 
 export const enhanceSkills = async () : Promise<string[]> => {
     try {
-        const response = await fetch('http://localhost:8000/enhance-skills/',
+        const response = await fetch('https://resenhapi.onrender.com/enhance-skills/',
             {
                 method: "GET",
                 headers: {

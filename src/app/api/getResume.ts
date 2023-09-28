@@ -11,7 +11,7 @@ import {
 
 export const getResume = async (): Promise<Resume> => {
     try {
-        const response = await fetch('http://localhost:8000/get-resume/',
+        const response = await fetch('https://resenhapi.onrender.com/get-resume/',
             {
                 method: "GET",
                 headers: {
