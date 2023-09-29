@@ -141,7 +141,7 @@ export const Form = ({
       {showForm && addButtonText && addButtonText != "Add School" && (
         <div className="grid grid-cols-10 gap-5">
           <div className="grid grid-cols-6 col-span-6">
-            <Button value="" onClick={() => {
+            {/* <Button value="" onClick={() => {
               if (form == "projects") {
                 console.log("Updating project...")
                 postResume(resume).then(() => 
@@ -188,7 +188,7 @@ export const Form = ({
                   })
                 })
               }
-            }}>Enhance all with AI</Button>
+            }}>Enhance all with AI</Button> */}
           </div>
           <div className="col-span-4 mt-0.5">
             <button
