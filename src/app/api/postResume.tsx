@@ -3,7 +3,7 @@ import { Resume } from "../lib/redux/types";
 export const postResume = async (resume: Resume) => {
     const toSend = JSON.stringify(resume)
     console.log(toSend)
-    fetch('http://localhost:8000/update/',
+    fetch('https://resenhapi.onrender.com/update/',
     {
         method: "POST",
         headers: {

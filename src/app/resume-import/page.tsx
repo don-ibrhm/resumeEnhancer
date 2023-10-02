@@ -38,11 +38,6 @@ export default function ImportResume() {
               isLoading={isLoading}
               reverseIsLoading={reverseIsLoading}
             />
-            <GridLoader
-              color="#4fbbe8"
-              loading={isLoading}
-              className="mx-auto p-3"
-            />
             {!hasAddedResume && (
               <>
                 <OrDivider />
@@ -72,11 +67,6 @@ export default function ImportResume() {
               className="mt-5"
               isLoading={isLoading}
               reverseIsLoading={reverseIsLoading}
-            />
-            <GridLoader
-              color="#4fbbe8"
-              loading={isLoading}
-              className="mx-auto pt-3"
             />
           </>
         )}
