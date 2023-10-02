@@ -12,6 +12,7 @@ import addPdfSrc from "public/assets/add-pdf.svg";
 import Image from "next/image";
 import { cx } from "lib/cx";
 import { deepClone } from "lib/deep-clone";
+import { GridLoader } from "react-spinners";
 
 const defaultFileState = {
   name: "",
@@ -23,10 +24,14 @@ export const ResumeDropzone = ({
   onFileUrlChange,
   className,
   playgroundView = false,
+  isLoading,
+  reverseIsLoading,
 }: {
   onFileUrlChange: (fileUrl: string) => void;
   className?: string;
   playgroundView?: boolean;
+  isLoading: boolean;
+  reverseIsLoading: () => void;
 }) => {
   const [file, setFile] = useState(defaultFileState);
   const [isHoveredOnDropzone, setIsHoveredOnDropzone] = useState(false);
@@ -72,6 +77,7 @@ export const ResumeDropzone = ({
   };
 
   const onImportClick = async () => {
+    reverseIsLoading()
     const resume = await parseResumeFromPdf(file.fileUrl); //TODO: CHANGE TO PARSE WITH AI
     const settings = deepClone(initialSettings);
 
@@ -183,13 +189,16 @@ export const ResumeDropzone = ({
                   className="btn-primary"
                   onClick={onImportClick}
                 >
-                  Import and Continue <span aria-hidden="true">→</span>
+                  {isLoading ? "Parsing with AI" : "Import and Continue"} 
+                  {!isLoading ? <span aria-hidden="true">→</span> :
+                  <GridLoader
+                    color="#fff"
+                    size={3}
+                    loading={isLoading}
+                    className="mx-2 my-2" // TODO: Fix look
+                  />}
                 </button>
               )}
-              <p className={cx(" text-gray-500", !playgroundView && "mt-6")}>
-                Note: {!playgroundView ? "Import" : "Parser"} works best on
-                single column resume
-              </p>
             </>
           )}
         </div>

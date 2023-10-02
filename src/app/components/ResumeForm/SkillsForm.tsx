@@ -42,9 +42,9 @@ export const SkillsForm = () => {
   };
 
   const enhance = async (field: "descriptions") => {
-    await postResume(resume)
-    console.log("Resume posted.")
-    const value = await enhanceSkills()
+    // await postResume(resume)
+    // console.log("Resume posted.")
+    const value = await enhanceSkills(resume)
     console.log("Value:", value)
     dispatch(changeSkills({ field, value }));
     

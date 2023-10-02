@@ -2,7 +2,7 @@ import { Resume } from "../lib/redux/types";
 
 export const uploadText = async (text: string) => {
     const toSend = JSON.stringify({'text': text})
-    await fetch('https://resenhapi.onrender.com/upload-text/',
+    await fetch('http://localhost:8000/upload-text/',
     {
         method: "POST",
         headers: {

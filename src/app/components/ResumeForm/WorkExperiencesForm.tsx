@@ -95,7 +95,7 @@ export const WorkExperiencesForm = () => {
               postResume(resume).then(() => 
               {
                   console.log("Enhancing work experience...")
-                  return enhanceWorkExperience()
+                  return enhanceWorkExperience(resume)
                 }).then((newWorkExperiences) => {
                   console.log("New Work Experiences", newWorkExperiences)
                   const field: keyof ResumeWorkExperience = "descriptions"

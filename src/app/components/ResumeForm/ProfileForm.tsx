@@ -19,9 +19,9 @@ export const ProfileForm = () => {
   };
 
   const enhance = async (field: keyof ResumeProfile) => {
-    await postResume(resume)
+    // await postResume(resume)
     // console.log("Resume posted.")
-    const value = await enhanceObjective()
+    const value = await enhanceObjective(resume)
     // console.log("Value:", value)
     dispatch(changeProfile({ field, value }));
     

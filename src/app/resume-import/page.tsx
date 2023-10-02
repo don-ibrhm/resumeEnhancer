@@ -3,10 +3,12 @@ import { getHasUsedAppBefore } from "lib/redux/local-storage";
 import { ResumeDropzone } from "components/ResumeDropzone";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { GridLoader } from "react-spinners";
 
 export default function ImportResume() {
   const [hasUsedAppBefore, setHasUsedAppBefore] = useState(false);
   const [hasAddedResume, setHasAddedResume] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
   const onFileUrlChange = (fileUrl: string) => {
     setHasAddedResume(Boolean(fileUrl));
   };
@@ -14,6 +16,13 @@ export default function ImportResume() {
   useEffect(() => {
     setHasUsedAppBefore(getHasUsedAppBefore());
   }, []);
+
+  const reverseIsLoading = () => {
+    if (isLoading)
+      setIsLoading(false)
+    else
+      setIsLoading(true)
+  }
 
   return (
     <main>
@@ -26,6 +35,13 @@ export default function ImportResume() {
             <ResumeDropzone
               onFileUrlChange={onFileUrlChange}
               className="mt-5"
+              isLoading={isLoading}
+              reverseIsLoading={reverseIsLoading}
+            />
+            <GridLoader
+              color="#4fbbe8"
+              loading={isLoading}
+              className="mx-auto p-3"
             />
             {!hasAddedResume && (
               <>
@@ -54,6 +70,13 @@ export default function ImportResume() {
             <ResumeDropzone
               onFileUrlChange={onFileUrlChange}
               className="mt-5"
+              isLoading={isLoading}
+              reverseIsLoading={reverseIsLoading}
+            />
+            <GridLoader
+              color="#4fbbe8"
+              loading={isLoading}
+              className="mx-auto pt-3"
             />
           </>
         )}

@@ -73,7 +73,7 @@ export const ProjectsForm = () => {
               postResume(resume).then(() => 
               {
                 console.log("Enhancing projects...")
-                return enhanceProjects()
+                return enhanceProjects(resume)
               }).then((newProjects) => {
                 console.log("New Projects", newProjects)
                 const field: keyof ResumeProject = "descriptions"

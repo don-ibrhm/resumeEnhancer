@@ -1,14 +1,16 @@
-import { ResumeWorkExperience, ResumeProject } from "../lib/redux/types";
+import { ResumeWorkExperience, ResumeProject, Resume } from "../lib/redux/types";
 
-export const enhanceObjective = async () : Promise<string> => {
+export const enhanceObjective = async (resume: Resume) : Promise<string> => {
     try {
-        const response = await fetch('https://resenhapi.onrender.com/enhance-objective/',
+        const toSend = JSON.stringify(resume)
+        const response = await fetch('http://localhost:8000/enhance-objective/',
         {
-            method: "GET",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             mode: "cors",
+            body: toSend,
         })
         if (!response.ok) {
             return ""
@@ -20,15 +22,17 @@ export const enhanceObjective = async () : Promise<string> => {
         }
 }
 
-export const enhanceWorkExperience = async () : Promise<ResumeWorkExperience[]> => {
+export const enhanceWorkExperience = async (resume: Resume) : Promise<ResumeWorkExperience[]> => {
     try {
-        const response = await fetch('https://resenhapi.onrender.com/enhance-experience/',
+        const toSend = JSON.stringify(resume)
+        const response = await fetch('http://localhost:8000/enhance-experience/',
         {
-            method: "GET",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             mode: "cors",
+            body: toSend,
         })
         const data = await response.json()
         console.log("Work enhance data", data)
@@ -45,15 +49,17 @@ export const enhanceWorkExperience = async () : Promise<ResumeWorkExperience[]> 
         }
 }
 
-export const enhanceProjects = async () : Promise<ResumeProject[]> => {
+export const enhanceProjects = async (resume: Resume) : Promise<ResumeProject[]> => {
     try {
-        const response = await fetch('https://resenhapi.onrender.com/enhance-projects/',
+        const toSend = JSON.stringify(resume)
+        const response = await fetch('http://localhost:8000/enhance-projects/',
         {
-            method: "GET",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             mode: "cors",
+            body: toSend,
         })
         const data = await response.json()
         console.log(data)
@@ -69,15 +75,17 @@ export const enhanceProjects = async () : Promise<ResumeProject[]> => {
     }
 }
 
-export const enhanceSkills = async () : Promise<string[]> => {
+export const enhanceSkills = async (resume: Resume) : Promise<string[]> => {
     try {
-        const response = await fetch('https://resenhapi.onrender.com/enhance-skills/',
+        const toSend = JSON.stringify(resume)
+        const response = await fetch('http://localhost:8000/enhance-skills/',
             {
-                method: "GET",
+                method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 mode: "cors",
+                body: toSend,
             })
         if (!response.ok) {
             return []
@@ -85,7 +93,7 @@ export const enhanceSkills = async () : Promise<string[]> => {
         const data = await response.json()
         console.log("Data", data)
         return data.response
-        } catch (error) {
-            return []
-        }
+    } catch (error) {
+        return []
+    }
 }
