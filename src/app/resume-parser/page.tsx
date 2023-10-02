@@ -39,6 +39,7 @@ const defaultFileUrl = RESUME_EXAMPLES[0]["fileUrl"];
 export default function ResumeParser() {
   const [fileUrl, setFileUrl] = useState(defaultFileUrl);
   const [textItems, setTextItems] = useState<TextItems>([]);
+  const [isLoading, setIsLoading] = useState(false)
   const lines = groupTextItemsIntoLines(textItems || []);
   const sections = groupLinesIntoSections(lines);
   const resume = extractResumeFromSections(sections);
@@ -50,6 +51,13 @@ export default function ResumeParser() {
     }
     test();
   }, [fileUrl]);
+
+  const reverseIsLoading = () => {
+    if (isLoading)
+      setIsLoading(false)
+    else
+      setIsLoading(true)
+  }
 
   return (
     <main className="h-full w-full overflow-hidden">
@@ -112,6 +120,8 @@ export default function ResumeParser() {
                   setFileUrl(fileUrl || defaultFileUrl)
                 }
                 playgroundView={true}
+                isLoading={isLoading}
+                reverseIsLoading={reverseIsLoading}
               />
             </div>
             <Heading level={2} className="!mt-[1.2em]">

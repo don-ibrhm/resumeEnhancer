@@ -79,6 +79,7 @@ export const ResumeDropzone = ({
   const onImportClick = async () => {
     reverseIsLoading()
     const resume = await parseResumeFromPdf(file.fileUrl); //TODO: CHANGE TO PARSE WITH AI
+    reverseIsLoading()
     const settings = deepClone(initialSettings);
 
     // Set formToShow settings based on uploaded resume if users have used the app before
