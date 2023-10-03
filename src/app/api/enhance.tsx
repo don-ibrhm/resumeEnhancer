@@ -1,6 +1,6 @@
 import { ResumeWorkExperience, ResumeProject, Resume } from "../lib/redux/types";
 
-const API_URL = "http://localhost:8000/"
+const API_URL = "https://resenhapi.onrender.com/"
 
 export const enhanceObjective = async (resume: Resume) : Promise<string> => {
     try {

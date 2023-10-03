@@ -22,28 +22,11 @@ export const TopNavBar = () => {
           <span className="sr-only">OpenResume</span>
           <Image
             src={logoSrc}
-            alt="OpenResume Logo"
-            className="h-8 w-full"
+            alt="DivergeResEnhance Logo"
+            className="h-8 w-24"
             priority
           />
         </Link>
-        <nav
-          aria-label="Site Nav Bar"
-          className="flex items-center gap-2 text-sm font-medium"
-        >
-          {[
-            ["/resume-builder", "Builder"],
-            ["/resume-parser", "Parser"],
-          ].map(([href, text]) => (
-            <Link
-              key={text}
-              className="rounded-md px-1.5 py-2 text-gray-500 hover:bg-gray-100 focus-visible:bg-gray-100 lg:px-4"
-              href={href}
-            >
-              {text}
-            </Link>
-          ))}
-        </nav>
       </div>
     </header>
   );

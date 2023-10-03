@@ -1,6 +1,6 @@
 import { Resume, nullResume } from "../lib/redux/types";
 
-const API_URL = "http://localhost:8000/"
+const API_URL = "https://resenhapi.onrender.com/"
 
 export const uploadText = async (text: string) : Promise<Resume> => {
     try {
