@@ -90,7 +90,7 @@ export const WorkExperiencesForm = () => {
               value={descriptions}
               onChange={handleWorkExperienceChange}
             />
-            <Button value="" onClick={() => {
+            <Button value="" onClick={(value: string, reverseIsLoading: () => void) => {
               console.log("Producing work experience...")
               postResume(resume).then(() => 
               {
@@ -102,6 +102,7 @@ export const WorkExperiencesForm = () => {
                   const value = newWorkExperiences[idx][field]
                   console.log(idx, value)
                   dispatch(changeWorkExperiences({ idx, field, value } as any));
+                  reverseIsLoading()
               })
             }}>
               Enhance with AI

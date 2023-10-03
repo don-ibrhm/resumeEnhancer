@@ -18,13 +18,13 @@ export const ProfileForm = () => {
     dispatch(changeProfile({ field, value }));
   };
 
-  const enhance = async (field: keyof ResumeProfile) => {
+  const enhance = async (field: keyof ResumeProfile, reverseIsLoading: () => void) => {
     // await postResume(resume)
     // console.log("Resume posted.")
     const value = await enhanceObjective(resume)
     // console.log("Value:", value)
     dispatch(changeProfile({ field, value }));
-    
+    reverseIsLoading()
   }
 
   return (

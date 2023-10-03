@@ -68,7 +68,7 @@ export const ProjectsForm = () => {
               onChange={handleProjectChange}
               labelClassName="col-span-full"
             />
-            <Button value="" onClick={() => {
+            <Button value="" onClick={(value: string, reverseIsLoading: () => void) => {
               console.log("Producing projects...")
               postResume(resume).then(() => 
               {
@@ -79,6 +79,7 @@ export const ProjectsForm = () => {
                 const field: keyof ResumeProject = "descriptions"
                 const value = newProjects[idx][field as keyof ResumeProject]
                 dispatch(changeProjects({ idx, field, value } as any));
+                reverseIsLoading()
               })
             }}>
               Enhance with AI

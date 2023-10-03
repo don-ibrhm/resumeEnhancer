@@ -17,7 +17,7 @@ interface InputProps<K extends string, V extends string | string[]> {
 
 interface ButtonProps<K extends string> {
   value: K;
-  onClick: (value: K) => void;
+  onClick: (value: K, reverseIsLoading: () => void) => void;
   className?: string;
   children?: ReactNode; // Use ReactNode for the children prop
 }
@@ -45,26 +45,33 @@ export const INPUT_CLASS_NAME =
   "mt-1 px-3 py-2 block w-full rounded-md border border-gray-300 text-gray-900 shadow-sm outline-none font-normal text-base";
 
 export const EDIT_BUTTON_CLASS_NAME =
-  "bg-blue-500 hover:bg-blue-400 rounded-full text-white px-4 py-2 bottom-4 right-4 col-span-6"
+  "bg-blue-500 hover:bg-blue-400 rounded-full text-white px-4 py-2 bottom-4 right-4 col-span-6 h-12"
 
 export const Button = <K extends string>({children, className, onClick, value}: ButtonProps<K>) => {
   const [isLoading, setIsLoading] = useState(false)
   return (
     <button 
           className={EDIT_BUTTON_CLASS_NAME + ' ' + className} 
-          onClick={(e) => onClick(value)}
+          onClick={async (e) => {
+            setIsLoading(true)
+            onClick(value, () => {
+              console.log("Got to the offloading part...")
+              setIsLoading(false)
+              console.log("is<loaading:", isLoading)
+            })
+          }}
           disabled={isLoading}
     >
       {isLoading ? 
-        "Enhance with AI"
-        :
         <GridLoader
           color="#fff"
           size={2}
           loading={isLoading}
           className="m-1" // TODO: Fix look
         />
-      }
+          : 
+        "Enhance with AI"
+      } 
     </button>
   )
 }

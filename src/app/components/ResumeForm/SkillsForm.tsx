@@ -41,13 +41,13 @@ export const SkillsForm = () => {
     dispatch(changeShowBulletPoints({ field: form, value }));
   };
 
-  const enhance = async (field: "descriptions") => {
+  const enhance = async (field: "descriptions", reverseIsLoading: () => void) => {
     // await postResume(resume)
     // console.log("Resume posted.")
     const value = await enhanceSkills(resume)
     console.log("Value:", value)
     dispatch(changeSkills({ field, value }));
-    
+    reverseIsLoading()
   }
 
   return (
