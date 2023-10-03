@@ -6,6 +6,7 @@ import { uploadText } from "api/upload";
 import { Resume } from "lib/redux/types";
 import { getResume } from "api/getResume";
 
+
 /**
  * Resume parser util that parses a resume from a resume pdf file
  *
@@ -29,9 +30,9 @@ export const parseResumeFromPdf = async (fileUrl: string) => {
   })
   console.log(pdf_text)
 
-  await uploadText(pdf_text)
-  console.log("Upload done | Getting resume back...")
-  const resume = await getResume()
+  const resume = await uploadText(pdf_text)
+  // console.log("Upload done | Getting resume back...")
+  // const resume = await getResume()
   console.log("Resume:", resume)
 
   return resume
@@ -44,3 +45,4 @@ export const parseResumeFromPdf = async (fileUrl: string) => {
 
   // return resume;
 };
+

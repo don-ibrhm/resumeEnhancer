@@ -47,12 +47,13 @@ export const EDIT_BUTTON_CLASS_NAME =
   "bg-blue-500 hover:bg-blue-400 rounded-full text-white px-4 py-2 bottom-4 right-4 col-span-6"
 
 export const Button = <K extends string>({children, className, onClick, value}: ButtonProps<K>) => {
+  const [isLoading, setIsLoading] = useState(false)
   return (
     <button 
           className={EDIT_BUTTON_CLASS_NAME + ' ' + className} 
           onClick={(e) => onClick(value)}
     >
-      {children}
+      Enhance with AI
     </button>
   )
 }

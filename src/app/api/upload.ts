@@ -1,18 +1,24 @@
-import { Resume } from "../lib/redux/types";
+import { Resume, nullResume } from "../lib/redux/types";
 
-export const uploadText = async (text: string) => {
-    const toSend = JSON.stringify({'text': text})
-    await fetch('https://resenhapi.onrender.com/upload-text/',
-    {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        mode: "cors",
-        body: toSend,
-    }).then((data) => {
-        console.log(data)
-    }).catch((e) => {
-        console.error(e);
-    })
+const API_URL = "http://localhost:8000/"
+
+export const uploadText = async (text: string) : Promise<Resume> => {
+    try {
+        const toSend = JSON.stringify({'text': text})
+        const response = await fetch(API_URL + 'upload-text/',
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            mode: "cors",
+            body: toSend,
+        })
+        console.log(response)
+        const resume: Resume = await response.json()
+        return resume
+    } catch (error) {
+        console.log(error)
+        return nullResume
+    }
 }

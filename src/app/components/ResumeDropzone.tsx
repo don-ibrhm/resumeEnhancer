@@ -13,6 +13,8 @@ import Image from "next/image";
 import { cx } from "lib/cx";
 import { deepClone } from "lib/deep-clone";
 import { GridLoader } from "react-spinners";
+import { parseResumeFromDocx } from "lib/parse-resume-from-docs";
+import { nullResume } from "lib/redux/types";
 
 const defaultFileState = {
   name: "",
@@ -35,7 +37,7 @@ export const ResumeDropzone = ({
 }) => {
   const [file, setFile] = useState(defaultFileState);
   const [isHoveredOnDropzone, setIsHoveredOnDropzone] = useState(false);
-  const [hasNonPdfFile, setHasNonPdfFile] = useState(false);
+  const [hasNonSupportedFile, setHasNonSupportedFile] = useState(false);
   const router = useRouter();
 
   const hasFile = Boolean(file.name);
@@ -54,11 +56,11 @@ export const ResumeDropzone = ({
   const onDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     const newFile = event.dataTransfer.files[0];
-    if (newFile.name.endsWith(".pdf")) {
-      setHasNonPdfFile(false);
+    if (newFile.name.endsWith(".pdf") || newFile.name.endsWith(".docx")) {
+      setHasNonSupportedFile(false);
       setNewFile(newFile);
     } else {
-      setHasNonPdfFile(true);
+      setHasNonSupportedFile(true);
     }
     setIsHoveredOnDropzone(false);
   };
@@ -78,7 +80,12 @@ export const ResumeDropzone = ({
 
   const onImportClick = async () => {
     reverseIsLoading()
-    const resume = await parseResumeFromPdf(file.fileUrl); //TODO: CHANGE TO PARSE WITH AI
+    let resume = nullResume // TODO: Maybe a try here
+    if (file.name.endsWith(".pdf")) {
+      resume = await parseResumeFromPdf(file.fileUrl); //TODO: CHANGE TO PARSE WITH AI
+    } else {
+      resume = await parseResumeFromDocx(file.fileUrl);
+    }
     reverseIsLoading()
     const settings = deepClone(initialSettings);
 
@@ -126,7 +133,7 @@ export const ResumeDropzone = ({
           <Image
             src={addPdfSrc}
             className="mx-auto h-14 w-14"
-            alt="Add pdf"
+            alt="Add pdf or docx"
             aria-hidden="true"
             priority
           />
@@ -139,7 +146,7 @@ export const ResumeDropzone = ({
                 !playgroundView && "text-lg font-semibold"
               )}
             >
-              Browse a pdf file or drop it here
+              Browse for a file or drop it here
             </p>
             <p className="flex text-sm text-gray-500">
               <LockClosedIcon className="mr-1 mt-1 h-3 w-3 text-gray-400" />
@@ -174,12 +181,12 @@ export const ResumeDropzone = ({
                 <input
                   type="file"
                   className="sr-only"
-                  accept=".pdf"
+                  accept=".pdf, .docx"
                   onChange={onInputChange}
                 />
               </label>
-              {hasNonPdfFile && (
-                <p className="mt-6 text-red-400">Only pdf file is supported</p>
+              {hasNonSupportedFile && (
+                <p className="mt-6 text-red-400">Only pdf and docx files are supported</p>
               )}
             </>
           ) : (
@@ -190,14 +197,17 @@ export const ResumeDropzone = ({
                   className="btn-primary"
                   onClick={onImportClick}
                 >
-                  {isLoading ? "Parsing with AI" : "Import and Continue"} 
-                  {!isLoading ? <span aria-hidden="true">→</span> :
-                  <GridLoader
-                    color="#fff"
-                    size={3}
-                    loading={isLoading}
-                    className="mx-2 my-2" // TODO: Fix look
-                  />}
+                    {isLoading ? 
+                      <GridLoader
+                        color="#fff"
+                        size={2}
+                        loading={isLoading}
+                        className="m-1" // TODO: Fix look
+                      />
+                        : 
+                      "Import and Parse with AI"
+                    } 
+                
                 </button>
               )}
             </>

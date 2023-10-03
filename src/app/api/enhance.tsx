@@ -1,9 +1,11 @@
 import { ResumeWorkExperience, ResumeProject, Resume } from "../lib/redux/types";
 
+const API_URL = "http://localhost:8000/"
+
 export const enhanceObjective = async (resume: Resume) : Promise<string> => {
     try {
         const toSend = JSON.stringify(resume)
-        const response = await fetch('https://resenhapi.onrender.com/enhance-objective/',
+        const response = await fetch(API_URL + 'enhance-objective/',
         {
             method: "POST",
             headers: {
@@ -25,7 +27,7 @@ export const enhanceObjective = async (resume: Resume) : Promise<string> => {
 export const enhanceWorkExperience = async (resume: Resume) : Promise<ResumeWorkExperience[]> => {
     try {
         const toSend = JSON.stringify(resume)
-        const response = await fetch('https://resenhapi.onrender.com/enhance-experience/',
+        const response = await fetch(API_URL + 'enhance-experience/',
         {
             method: "POST",
             headers: {
@@ -52,7 +54,7 @@ export const enhanceWorkExperience = async (resume: Resume) : Promise<ResumeWork
 export const enhanceProjects = async (resume: Resume) : Promise<ResumeProject[]> => {
     try {
         const toSend = JSON.stringify(resume)
-        const response = await fetch('https://resenhapi.onrender.com/enhance-projects/',
+        const response = await fetch(API_URL + 'enhance-projects/',
         {
             method: "POST",
             headers: {
@@ -78,7 +80,7 @@ export const enhanceProjects = async (resume: Resume) : Promise<ResumeProject[]>
 export const enhanceSkills = async (resume: Resume) : Promise<string[]> => {
     try {
         const toSend = JSON.stringify(resume)
-        const response = await fetch('https://resenhapi.onrender.com/enhance-skills/',
+        const response = await fetch(API_URL + 'enhance-skills/',
             {
                 method: "POST",
                 headers: {
