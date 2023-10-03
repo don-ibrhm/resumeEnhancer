@@ -17,13 +17,13 @@ export const TopNavBar = () => {
         isHomePage && "bg-dot"
       )}
     >
-      <div className="flex h-10 w-full items-center justify-between">
+      <div className="flex h-10 w-full items-center justify-center">
         <Link href="/">
           <span className="sr-only">OpenResume</span>
           <Image
             src={logoSrc}
             alt="DivergeResEnhance Logo"
-            className="h-8 w-24"
+            className="h-9 w-36 md:h-12 md:w-48"
             priority
           />
         </Link>
