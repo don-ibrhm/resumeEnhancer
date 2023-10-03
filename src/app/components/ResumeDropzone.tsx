@@ -195,6 +195,7 @@ export const ResumeDropzone = ({
                 <button
                   type="button"
                   className="btn-primary"
+                  disabled={isLoading}
                   onClick={onImportClick}
                 >
                     {isLoading ? 

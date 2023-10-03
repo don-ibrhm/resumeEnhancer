@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import ContentEditable from "react-contenteditable";
 import { useAutosizeTextareaHeight } from "lib/hooks/useAutosizeTextareaHeight";
 import React, { ReactNode } from 'react';
+import { GridLoader } from "react-spinners";
 
 interface InputProps<K extends string, V extends string | string[]> {
   label: string;
@@ -52,8 +53,18 @@ export const Button = <K extends string>({children, className, onClick, value}: 
     <button 
           className={EDIT_BUTTON_CLASS_NAME + ' ' + className} 
           onClick={(e) => onClick(value)}
+          disabled={isLoading}
     >
-      Enhance with AI
+      {isLoading ? 
+        "Enhance with AI"
+        :
+        <GridLoader
+          color="#fff"
+          size={2}
+          loading={isLoading}
+          className="m-1" // TODO: Fix look
+        />
+      }
     </button>
   )
 }
