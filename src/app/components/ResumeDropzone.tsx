@@ -148,9 +148,8 @@ export const ResumeDropzone = ({
             >
               Browse for a file or drop it here
             </p>
-            <p className="flex text-sm text-gray-500">
-              <LockClosedIcon className="mr-1 mt-1 h-3 w-3 text-gray-400" />
-              File data is used locally and never leaves your browser
+            <p className="flex text-sm text-gray-500 justify-center">
+              Accepts .pdf and .docx files
             </p>
           </>
         ) : (

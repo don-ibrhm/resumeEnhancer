@@ -45,7 +45,7 @@ export const INPUT_CLASS_NAME =
   "mt-1 px-3 py-2 block w-full rounded-md border border-gray-300 text-gray-900 shadow-sm outline-none font-normal text-base";
 
 export const EDIT_BUTTON_CLASS_NAME =
-  "bg-blue-500 hover:bg-blue-400 rounded-full text-white px-4 py-2 bottom-4 right-4 col-span-6 h-12"
+  "bg-orange-500 hover:bg-orange-400 rounded-full text-white px-4 py-2 bottom-4 right-4 col-span-6 h-12"
 
 export const Button = <K extends string>({children, className, onClick, value}: ButtonProps<K>) => {
   const [isLoading, setIsLoading] = useState(false)

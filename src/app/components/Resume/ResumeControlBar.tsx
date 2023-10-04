@@ -39,6 +39,7 @@ const ResumeControlBar = ({
         <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
         <input
           type="range"
+          // className="bg-orange-500 rounded w-full h-3"
           min={0.5}
           max={1.5}
           step={0.01}

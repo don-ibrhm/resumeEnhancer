@@ -1,6 +1,7 @@
 import "globals.css";
 import { TopNavBar } from "components/TopNavBar";
 import { Analytics } from "@vercel/analytics/react";
+import { Footer } from "components/Footer";
 
 export const metadata = {
   title: "DivergeResEnhance - Based on OpenResume",
@@ -19,6 +20,7 @@ export default function RootLayout({
         <TopNavBar />
         {children}
         <Analytics />
+        <Footer />
       </body>
     </html>
   );

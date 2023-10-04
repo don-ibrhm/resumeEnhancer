@@ -1,13 +1,13 @@
 const STEPS = [
-  { title: "Add a resume pdf", text: "or create from scratch," },
-  { title: "Enhance your resume", text: "preview and make edits," },
-  { title: "Download as pdf", text: "and apply with confidence." },
+  { title: "Upload your Resume", text: "or create one from scratch." },
+  { title: "Optimize your CV with AI", text: "then preview and fine-tune changes." },
+  { title: "Export as pdf", text: "and apply with confidence." },
 ];
 
 export const Steps = () => {
   return (
-    <section className="mx-auto mt-8 rounded-2xl bg-sky-50 bg-dot px-8 pb-12 pt-10 lg:mt-2">
-      <h1 className="text-center text-3xl font-bold">3 Simple Steps</h1>
+    <section className="mx-auto mt-8 rounded-2xl bg-orange-50 bg-dot px-8 pb-12 pt-10 lg:mt-2">
+      <h1 className="text-center text-3xl font-bold">Transform your Resume with AI in <span className="text-primary">THREE</span> simple steps</h1>
       <div className="mt-8 flex justify-center">
         <dl className="flex flex-col gap-y-10 lg:flex-row lg:justify-center lg:gap-x-20">
           {STEPS.map(({ title, text }, idx) => (

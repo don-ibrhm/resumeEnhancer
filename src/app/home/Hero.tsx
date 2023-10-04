@@ -13,12 +13,12 @@ export const Hero = () => {
           resume easily
         </h1>
         <p className="mt-3 text-lg lg:mt-5 lg:text-xl">
-          With this free, open-source, and powerful resume builder
+          The Ultimate CV Enhancer at your fingertip!
         </p>
         <Link href="/resume-import" className="btn-primary mt-6 lg:mt-14">
           Create Resume <span aria-hidden="true">→</span>
         </Link>
-        <p className="ml-6 mt-3 text-sm text-gray-600">No sign up required</p>
+        <p className="mt-3 ml-0 md:ml-7 text-sm text-gray-600">No sign up required</p>
       </div>
       <FlexboxSpacer maxWidth={100} minWidth={50} className="hidden lg:block" />
       <div className="mt-6 flex justify-center lg:mt-4 lg:block lg:grow">
