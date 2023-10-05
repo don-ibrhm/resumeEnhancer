@@ -1,4 +1,4 @@
-import { Page, View, Document } from "@react-pdf/renderer";
+import { Page, View, Document, StyleSheet } from "@react-pdf/renderer";
 import { styles, spacing } from "components/Resume/ResumePDF/styles";
 import { ResumePDFProfile } from "components/Resume/ResumePDF/ResumePDFProfile";
 import { ResumePDFWorkExperience } from "components/Resume/ResumePDF/ResumePDFWorkExperience";
@@ -92,9 +92,12 @@ export const ResumePDF = ({
     ),
   };
 
+  let lineGuess = 0;
+  console.log("Work Experiences count:", workExperiences.length, workExperiences)
+
   return (
     <>
-      <Document title={`${name} Resume`} author={name} producer={"DivergeResume"}>
+      <Document title={`${name} Resume`} author={name} producer={"DivergeResume"} pageLayout={"oneColumn"}>
         <Page
           size={documentSize === "A4" ? "A4" : "LETTER"}
           style={{
@@ -106,10 +109,12 @@ export const ResumePDF = ({
         >
           {Boolean(settings.themeColor) && (
             <View
+              fixed
               style={{
                 width: spacing["full"],
                 height: spacing[3.5],
                 backgroundColor: themeColor,
+                marginBottom: "12px",
               }}
             />
           )}

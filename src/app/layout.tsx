@@ -4,9 +4,9 @@ import { Analytics } from "@vercel/analytics/react";
 import { Footer } from "components/Footer";
 
 export const metadata = {
-  title: "DivergeResEnhance - Based on OpenResume",
+  title: "DivergeResume",
   description:
-    "OpenResume is a free, open-source, and powerful resume builder that allows anyone to create a modern professional resume in 3 simple steps. For those who have an existing resume, OpenResume also provides a resume parser to help test and confirm its ATS readability.",
+    "DivergeResume is a resume builder that allows the parsing and improvement of resumes with OpenAI's API",
 };
 
 export default function RootLayout({

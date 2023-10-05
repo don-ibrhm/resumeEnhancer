@@ -69,7 +69,7 @@ const ResumeIframe = ({
     [isA4]
   );
 
-  if (enablePDFViewer) {
+  if (enablePDFViewer) { //TODO: change this too inshaAllah
     return (
       <DynamicPDFViewer className="h-full w-full">
         {children as any}
@@ -98,7 +98,7 @@ const ResumeIframe = ({
         className={`origin-top-left bg-white shadow-lg`}
       >
         <Frame
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "100%"}} // , overflow: "auto"
           initialContent={iframeInitialContent}
           // key is used to force component to re-mount when document size changes
           key={isA4 ? "A4" : "LETTER"}
