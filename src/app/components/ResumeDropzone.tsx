@@ -74,6 +74,7 @@ export const ResumeDropzone = ({
   };
 
   const onRemove = () => {
+    reverseIsLoading()
     setFile(defaultFileState);
     onFileUrlChange("");
   };

@@ -19,9 +19,9 @@ export const enhanceObjective = async (resume: Resume) : Promise<string> => {
         }
         const data = await response.json()
         return data.response
-        } catch (error) {
-            return ""
-        }
+    } catch (error) {
+        return ""
+    }
 }
 
 export const enhanceWorkExperience = async (resume: Resume) : Promise<ResumeWorkExperience[]> => {
@@ -40,15 +40,15 @@ export const enhanceWorkExperience = async (resume: Resume) : Promise<ResumeWork
         console.log("Work enhance data", data)
         const workExperiences: ResumeWorkExperience[] = data.response
         return workExperiences
-        } catch (error) {
-            const emptyResumeWorkExperience: ResumeWorkExperience = {
-                company: "",
-                jobTitle: "",
-                date: "",
-                descriptions: []
-            }
-            return []
+    } catch (error) {
+        const emptyResumeWorkExperience: ResumeWorkExperience = {
+            company: "",
+            jobTitle: "",
+            date: "",
+            descriptions: []
         }
+        return []
+    }
 }
 
 export const enhanceProjects = async (resume: Resume) : Promise<ResumeProject[]> => {
